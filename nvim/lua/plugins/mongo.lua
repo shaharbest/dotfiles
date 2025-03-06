@@ -4,7 +4,5 @@ return {
     require("vi-mongo").setup()
   end,
   cmd = { "ViMongo" },
-  keys = {
-    { "<leader>vm", "<cmd>ViMongo<cr>", desc = "ViMongo" }
-  }
+  keys = { { "<leader>vm", "<cmd>ViMongo<cr>", desc = "ViMongo" } }
 }
