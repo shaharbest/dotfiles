@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "kopecmaciej/vi-mongo.nvim",
   config = function()
     require("vi-mongo").setup()
