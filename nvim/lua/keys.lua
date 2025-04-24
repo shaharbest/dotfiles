@@ -1,11 +1,3 @@
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.g.mapleader = " "
-
-vim.opt.swapfile = false
-
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
 vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
@@ -25,11 +17,3 @@ vim.api.nvim_set_keymap('n', '<leader>qn', ':cnext<CR>', { noremap = true, silen
 vim.api.nvim_set_keymap('n', '<leader>qp', ':cprev<CR>', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
-vim.wo.number = true
-
-vim.opt.clipboard = 'unnamedplus'
-
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.foldenable = true
-vim.o.foldlevel = 99 -- Start with all folds open
