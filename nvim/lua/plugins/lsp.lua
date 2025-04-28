@@ -28,30 +28,17 @@ return {
   -- nvim-lspconfig setup
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
       -- Define configurations for specific language servers
       local servers = {
-        ts_ls = {
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-          },
-          root_dir = lspconfig.util.root_pattern(".meteor", "package.json", ".git"),
-          init_options = { preferences = { disableSuggestions = false } },
-        },
-        html = {},
-        lua_ls = {},
-        ruff = {},
-        jsonls = {},
-        yamlls = {},
         bashls = {},
+        html = {},
+        jsonls = {},
+        lua_ls = {},
         pylsp = {
           settings = {
             pylsp = {
@@ -68,13 +55,27 @@ return {
             },
           },
         },
+        ruff = {},
+        ts_ls = {
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+          },
+          root_dir = lspconfig.util.root_pattern(".meteor", "package.json", ".git"),
+          init_options = { preferences = { disableSuggestions = false } },
+        },
+        yamlls = {},
       }
 
       -- Setup all the servers dynamically
       for server, config in pairs(servers) do
         lspconfig[server].setup({
           capabilities = capabilities,
-          settings = config.settings, -- Use 'settings' consistently
+          settings = config.settings,
           filetypes = config.filetypes,
           root_dir = config.root_dir,
           init_options = config.init_options,
@@ -100,7 +101,7 @@ return {
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
-      "williamboman/mason.nvim", -- Ensure mason is a dependency
+      "williamboman/mason.nvim", -- Ensure mason is available
       "nvimtools/none-ls-extras.nvim",
       "jay-babu/mason-null-ls.nvim",
     },
@@ -129,10 +130,7 @@ return {
           require("none-ls.formatting.ruff_format"),
           formatting.prettier.with({
             filetypes = { "html", "json", "yaml", "markdown" },
-            formatting.prettier.with({
-              filetypes = { "html", "json", "yaml", "markdown" },
-              extra_args = { "--use-tabs", "false", "--tab-width", "2" }, -- Assuming you want 2 spaces here as well
-            }),
+            extra_args = { "--use-tabs", "false", "--tab-width", "2" }, -- Assuming you want 2 spaces
           }),
           formatting.shfmt.with({ args = { "-i", "4" } }),
         },

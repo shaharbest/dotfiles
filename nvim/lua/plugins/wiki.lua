@@ -1,9 +1,10 @@
 return {
   "vimwiki/vimwiki",
+  -- enabled = false,
   init = function()
-    local data_home = os.getenv("XDG_DATA_HOME") or vim.fn.expand("~/.local/share")
+    local home = vim.fn.expand("~")
     vim.g.vimwiki_list = {{
-      path = data_home .. "/vimwiki",
+      path = home .. "/docs/vimwiki",
       syntax = "markdown",
       ext = ".md",
     }}
