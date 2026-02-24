@@ -20,6 +20,7 @@ return {
         "ruff",
         "lua_ls",
         "ts_ls",
+        "terraformls",
         -- "eslint"
       },
     },
