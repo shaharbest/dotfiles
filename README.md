@@ -8,6 +8,7 @@ My dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 |---------|------|-------------|
 | `nvim` | `~/.config/nvim` | Neovim config — lazy.nvim, LSP via Mason, Telescope, Harpoon |
 | `tmux` | `~/.config/tmux` | tmux config — tpm, catppuccin, sessionx, fzf |
+| `zsh` | `~/.zshrc` | Zsh config — aliases, vi mode, PATH setup |
 
 ## Setup
 
@@ -31,5 +32,5 @@ Requires `stow` — install with `brew install stow`.
 
 ```bash
 cd ~/dev/dotfiles
-stow -D nvim tmux
+stow -D nvim tmux zsh
 ```
