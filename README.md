@@ -12,7 +12,7 @@ My dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 ## Setup
 
 ```bash
-git clone <repo-url> ~/dev/dotfiles
+git clone git@github.com:shaharbest/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
 ./setup.sh
 ```
