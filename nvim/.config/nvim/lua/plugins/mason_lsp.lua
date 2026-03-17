@@ -20,12 +20,10 @@ return {
         "ruff",
         "lua_ls",
         "ts_ls",
-        "terraformls",
-        -- "eslint"
+        "eslint",
       },
     },
     config = function(_, opts)
-      -- Custom settings for lua_ls (applied before automatic enable)
       vim.lsp.config("lua_ls", {
         settings = {
           Lua = {

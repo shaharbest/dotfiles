@@ -40,11 +40,3 @@ vim.diagnostic.config({ virtual_lines = true })
 require("config.lazy")
 require("config.keymaps")
 
--- Disable the legacy Vim syntax for Prisma files
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "prisma",
-  callback = function()
-    vim.bo.syntax = ""        -- clears the old syntax
-    vim.treesitter.start()    -- forces Tree-sitter to take over
-  end,
-})

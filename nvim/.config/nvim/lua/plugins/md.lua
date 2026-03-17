@@ -1,14 +1,12 @@
 return {
-  "toppair/peek.nvim",
-  event = { "VeryLazy" },
-  build = "deno task --quiet build:fast",
-  keys = {
-    { "<leader>mp", "<cmd>lua require('peek').open()<cr>", desc = "Peek (Markdown Preview)" },
+  "MeanderingProgrammer/render-markdown.nvim",
+  ft = "markdown",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-tree/nvim-web-devicons",
   },
-  config = function()
-    require("peek").setup({
-      app = "webview",
-      theme = "dark",
-    })
-  end,
+  keys = {
+    { "<leader>mp", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Markdown Render" },
+  },
+  opts = {},
 }

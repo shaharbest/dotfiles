@@ -17,7 +17,6 @@ map({ "n" }, "<leader>c", "1z=")
 map({ "n" }, "<C-q>", ":copen<CR>", { silent = true })
 map({ "n" }, "<leader>w", "<Cmd>update<CR>")
 map({ "n" }, "<leader>q", vim.diagnostic.setloclist)
-map({ "n" }, "<C-f>", "<Cmd>Open .<CR>")
 map({ "n" }, "<leader>a", ":edit #<CR>")
 map({ "n" }, "<leader>lg", ":LazyGit<CR>")
 
