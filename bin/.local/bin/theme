@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+mode="${1:-}"
+if [[ "$mode" != "dark" && "$mode" != "light" ]]; then
+  echo "Usage: theme dark|light" >&2
+  exit 1
+fi
+
+echo "$mode" > "$HOME/.config/theme"
+
+# --- macOS dark mode ---
+if [[ "$(uname)" == "Darwin" ]]; then
+  osascript -e "tell app \"System Events\" to tell appearance preferences to set dark mode to $([[ "$mode" == "dark" ]] && echo true || echo false)"
+fi
+
+# --- WezTerm: touch config to trigger auto-reload ---
+touch "$HOME/.config/wezterm/wezterm.lua"
+
+# --- Tmux ---
+if tmux info &>/dev/null 2>&1; then
+  flavor=$([[ "$mode" == "light" ]] && echo "latte" || echo "mocha")
+  # Unset locked @thm_* vars so the new theme file can override them
+  for var in bg fg rosewater flamingo pink mauve red maroon peach yellow green teal sky sapphire blue lavender \
+              subtext_1 subtext_0 overlay_2 overlay_1 overlay_0 surface_2 surface_1 surface_0 mantle crust; do
+    tmux set -gu "@thm_${var}" 2>/dev/null || true
+  done
+  tmux set -g @catppuccin_flavor "$flavor"
+  bash ~/.config/tmux/plugins/tmux/catppuccin.tmux
+  tmux refresh-client -S
+fi
+
+# --- Neovim: send :Theme command to all running instances ---
+for sock in $(lsof -c nvim -a -U 2>/dev/null | awk 'NR>1 {print $9}'); do
+  nvim --server "$sock" --remote-send ":Theme $mode<CR>" 2>/dev/null || true
+done
