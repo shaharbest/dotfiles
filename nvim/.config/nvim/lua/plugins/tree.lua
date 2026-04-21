@@ -19,5 +19,8 @@ return {
     -- textobjects = { enable = true },
     fold = { enable = true },
   },
-  -- config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
+  config = function(_, opts)
+    vim.treesitter.language.register('terraform', 'terraform-vars')
+    require("nvim-treesitter.configs").setup(opts)
+  end,
 }
