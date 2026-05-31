@@ -1,33 +1,37 @@
-local function read_theme()
-  local f = io.open(vim.env.HOME .. '/.config/theme', 'r')
-  if not f then return 'dark' end
-  local t = f:read('*l')
-  f:close()
-  return t or 'dark'
+local function load_omarchy()
+  local path = vim.env.HOME .. '/.config/omarchy/current/theme/neovim.lua'
+  local ok, specs = pcall(dofile, path)
+  if not ok or type(specs) ~= 'table' then return nil end
+
+  local plugin, colorscheme = nil, nil
+  for _, s in ipairs(specs) do
+    if s[1] == 'LazyVim/LazyVim' then
+      colorscheme = s.opts and s.opts.colorscheme
+    else
+      plugin = s
+    end
+  end
+  if not plugin or not colorscheme then return nil end
+
+  if not plugin.config then
+    local opts = plugin.opts
+    local mod = plugin.name or plugin[1]:match('[^/]+$'):gsub('%.nvim$', '')
+    plugin.opts = nil
+    plugin.priority = plugin.priority or 1000
+    plugin.config = function()
+      if opts then pcall(function() require(mod).setup(opts) end) end
+      vim.cmd.colorscheme(colorscheme)
+    end
+  end
+
+  return plugin
 end
 
-local function apply_theme(mode)
-  local flavour = mode == 'light' and 'latte' or 'mocha'
-  require('catppuccin').setup({
-    compile = { enabled = true },
-    flavour = flavour,
-    term_colors = true,
-    styles = { comments = { 'italic' }, conditionals = { 'italic' } },
-    integrations = { cmp = true },
-  })
-  vim.cmd.colorscheme('catppuccin')
-  local f = io.open(vim.env.HOME .. '/.config/theme', 'w')
-  if f then f:write(mode); f:close() end
-end
-
-return {
+return load_omarchy() or {
   'catppuccin/nvim',
   name = 'catppuccin',
   priority = 1000,
   config = function()
-    apply_theme(read_theme())
-    vim.api.nvim_create_user_command('Theme', function(args)
-      apply_theme(args.args)
-    end, { nargs = 1 })
+    vim.cmd.colorscheme('catppuccin')
   end,
 }

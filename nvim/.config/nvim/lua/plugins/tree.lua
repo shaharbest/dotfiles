@@ -21,6 +21,6 @@ return {
   },
   config = function(_, opts)
     vim.treesitter.language.register('terraform', 'terraform-vars')
-    require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter").setup(opts)
   end,
 }
