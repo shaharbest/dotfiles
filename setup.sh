@@ -10,5 +10,5 @@ if ! command -v stow &>/dev/null; then
 fi
 
 cd "$DOTFILES_DIR"
-stow -v --target="$HOME" nvim tmux zsh wezterm bin
+stow -v --target="$HOME" nvim tmux zsh wezterm bin starship
 echo "Done. Symlinks created."

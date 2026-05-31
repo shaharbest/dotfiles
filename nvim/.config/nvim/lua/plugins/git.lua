@@ -36,6 +36,7 @@ return {
           vim.schedule(gs.prev_hunk)
           return "<Ignore>"
         end, { expr = true })
+        map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle git blame" })
       end,
     },
   },
