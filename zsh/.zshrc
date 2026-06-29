@@ -2,6 +2,11 @@ zmodload zsh/zprof
 zmodload zsh/datetime
 _zsh_start=$EPOCHREALTIME
 
+# for gov project. remove it after finishing it's development
+# export AWS_PROFILE=sela-us-bi
+# export AWS_PROFILE=coactive-dev
+export AWS_PROFILE=coactive-prod
+
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
