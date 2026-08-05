@@ -12,7 +12,7 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
+    dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig", "saghen/blink.cmp" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       ensure_installed = {
@@ -36,6 +36,10 @@ return {
             client.server_capabilities.semanticTokensProvider = nil
           end
         end,
+      })
+
+      vim.lsp.config("*", {
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
 
       vim.lsp.config("lua_ls", {

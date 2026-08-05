@@ -16,14 +16,14 @@ lua/plugins/              # Plugin specs (one file per plugin/group)
 | Plugin | Purpose |
 |--------|---------|
 | **catppuccin** | Colorscheme (mocha) |
-| **nvim-cmp** | Completion (LSP, buffer, path, snippets) |
+| **blink.cmp** | Completion (LSP, buffer, path, snippets, cmdline) |
 | **mason + mason-lspconfig** | LSP server management |
 | **nvim-lspconfig** | LSP configuration |
 | **Telescope** | Fuzzy finder, LSP references/definitions, git |
 | **Oil.nvim** | File browser |
 | **Neo-tree** | Tree file explorer (`<C-n>`) |
 | **Harpoon v2** | Quick file switching |
-| **Treesitter** | Indentation and folding (highlight disabled) |
+| **Treesitter** (`main` branch) | Highlighting, indentation, folding |
 | **gitsigns** | Inline git changes |
 | **Neogit** | Git UI |
 | **LazyGit** | Terminal git UI |
@@ -34,9 +34,9 @@ lua/plugins/              # Plugin specs (one file per plugin/group)
 
 ## LSP Servers
 
-Managed by Mason: `pyright`, `ruff`, `lua_ls`, `ts_ls`
+Managed by Mason: `pyright`, `ruff`, `lua_ls`, `ts_ls`, `eslint`, `terraformls`, `cssls`
 
-Additional servers can be manually installed: `cssls`, `biome`, `tailwindcss`, `emmet_language_server`, `prismals`
+Additional servers can be manually installed: `biome`, `tailwindcss`, `emmet_language_server`, `prismals`
 
 ## Keybindings
 
@@ -107,3 +107,10 @@ Leader: `<Space>`
 2. Open Neovim -- lazy.nvim auto-installs on first launch
 3. Run `:Lazy sync` to install plugins
 4. Run `:Mason` to verify LSP servers
+
+## Notes for AI agents
+
+- **nvim-treesitter is pinned to its rewritten `main` branch** (`tree.lua`, `branch = "main"`). That branch dropped the old module system: `opts` like `ensure_installed` / `highlight.enable` / `indent.enable` / `fold.enable` are silently ignored. Parsers install via `require("nvim-treesitter").install({...})`; highlighting is started explicitly per-buffer via `vim.treesitter.start()` in a `FileType` autocmd in `tree.lua`. If highlighting looks broken, check that autocmd first — not the plugin's `opts`.
+- **No comment plugin is installed.** `gc`/`gcc` use Neovim's native comment support, which derives commentstring per-region from treesitter highlight-query metadata (`#set! bo.commentstring`, see `:h treesitter-highlight-commentstring`). This is why JSX/TSX comments already come out as `{/* %s */}` — nvim-ts-context-commentstring or similar would be redundant. It only works if the treesitter highlighter is attached (see point above).
+- **Completion is blink.cmp**, not nvim-cmp/LuaSnip. LSP capabilities are wired via `require("blink.cmp").get_lsp_capabilities()` in `mason_lsp.lua`.
+- **Plugin manager is lazy.nvim**, not `vim.pack` (Neovim 0.12's native package manager). A migration was considered and deliberately not done — don't assume `vim.pack` config exists elsewhere.
