@@ -22,6 +22,7 @@ return {
         "ts_ls",
         "eslint",
         "terraformls",
+        "cssls",
       },
     },
     config = function(_, opts)
