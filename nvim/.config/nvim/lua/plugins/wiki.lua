@@ -5,10 +5,11 @@ return {
       -- neowiki.nvim supports both absolute and tilde-expanded paths
       -- { name = "Work",     path = "~/work/wiki" },
       -- { name = "Personal", path = "personal/wiki" },
-      { name = "Work",     path = "~/dev/wiki" },
+      { name = "Work",     path = "~/Projects/wiki" },
       -- { name = "Personal", path = "~/Documents/wiki" },
     },
   },
+  ft = { "markdown", "quarto" },
   keys = {
     { "<leader>ww", "<cmd>lua require('neowiki').open_wiki()<cr>",          desc = "Open Wiki" },
     { "<leader>wW", "<cmd>lua require('neowiki').open_wiki_floating()<cr>", desc = "Open Wiki in Floating Window" },
