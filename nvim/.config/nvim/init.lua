@@ -37,6 +37,16 @@ vim.opt.foldlevelstart = 99
 vim.diagnostic.config({ virtual_lines = true })
 -- vim.diagnostic.enable(false)
 
+-- Set markdown filetype for new empty/unnamed buffers
+vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "" and vim.fn.bufname("%") == "" then
+      vim.bo.filetype = "markdown"
+    end
+  end,
+})
+
 require("config.lazy")
 require("config.keymaps")
 
