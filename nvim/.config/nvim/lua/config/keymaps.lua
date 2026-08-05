@@ -30,6 +30,8 @@ vim.keymap.set('n', '<leader>hh', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>cp', ':let @+=expand("%:.")<CR>', { desc = 'Copy relative path' })
 
+map({ "n" }, "<leader>rp", "<cmd>write | !python3 %<CR>", { desc = "Run: Python current file" })
+
 map("n", "<leader>dd", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
