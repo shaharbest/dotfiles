@@ -30,7 +30,20 @@ vim.keymap.set('n', '<leader>hh', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>cp', ':let @+=expand("%:.")<CR>', { desc = 'Copy relative path' })
 
-map({ "n" }, "<leader>rp", "<cmd>write | !python3 %<CR>", { desc = "Run: Python current file" })
+local runners = {
+  python = "python3",
+  typescript = "deno run",
+}
+
+map({ "n" }, "<leader>rp", function()
+  local cmd = runners[vim.bo.filetype]
+  if not cmd then
+    vim.notify("No runner for filetype: " .. vim.bo.filetype, vim.log.levels.WARN)
+    return
+  end
+  vim.cmd("write")
+  vim.cmd("!" .. cmd .. " %")
+end, { desc = "Run: current file" })
 
 map("n", "<leader>dd", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
