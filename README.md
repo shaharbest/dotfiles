@@ -9,6 +9,9 @@ My dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | `nvim` | `~/.config/nvim` | Neovim config — lazy.nvim, LSP via Mason, Telescope, Harpoon |
 | `tmux` | `~/.config/tmux` | tmux config — tpm, catppuccin, sessionx, fzf |
 | `zsh` | `~/.zshrc` | Zsh config — aliases, vi mode, PATH setup |
+| `hypr` | `~/.config/hypr` | Hyprland keybinding overrides |
+| `omarchy` | `~/.config/omarchy` | Omarchy shell config — bar layout, widgets |
+| `bin` | `~/.local/bin` | Personal scripts |
 
 ## Setup
 

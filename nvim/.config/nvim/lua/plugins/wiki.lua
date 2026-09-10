@@ -2,11 +2,7 @@ return {
   "echaya/neowiki.nvim",
   opts = {
     wiki_dirs = {
-      -- neowiki.nvim supports both absolute and tilde-expanded paths
-      -- { name = "Work",     path = "~/work/wiki" },
-      -- { name = "Personal", path = "personal/wiki" },
-      { name = "Work",     path = "~/Projects/wiki" },
-      -- { name = "Personal", path = "~/Documents/wiki" },
+      { name = "Work",     path = "~/Projects/personal/wiki" },
     },
   },
   ft = { "markdown", "quarto" },
