@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Toggle espanso's expansion engine on/off (not the daemon itself).
+# Espanso exposes no query command for enabled/disabled state, so this
+# script tracks it in a state file, mirroring omarchy-toggle-idle.
+
+STATE_DIR="$HOME/.local/state/omarchy/indicators"
+STATE_FILE="$STATE_DIR/espanso-disabled"
+
+espanso_disabled() {
+  [[ -f $STATE_FILE ]]
+}
+
+print_status() {
+  if espanso_disabled; then
+    printf '{"text":"⌨","tooltip":"Espanso: disabled","class":"inactive"}\n'
+  else
+    printf '{"text":"⌨","tooltip":"Espanso: enabled","class":"active"}\n'
+  fi
+}
+
+apply_state() {
+  case "$1" in
+    enable)
+      rm -f "$STATE_FILE"
+      espanso cmd enable
+      ;;
+    disable)
+      mkdir -p "$STATE_DIR"
+      touch "$STATE_FILE"
+      espanso cmd disable
+      ;;
+  esac
+}
+
+case "${1:-toggle}" in
+  toggle)
+    if espanso_disabled; then
+      apply_state enable
+    else
+      apply_state disable
+    fi
+    ;;
+  enable|on)
+    apply_state enable
+    ;;
+  disable|off)
+    apply_state disable
+    ;;
+  status|--status)
+    print_status
+    ;;
+  *)
+    echo "Usage: omarchy-toggle-espanso [toggle|enable|disable|status]" >&2
+    exit 1
+    ;;
+esac
