@@ -10,6 +10,6 @@ if ! command -v stow &>/dev/null; then
 fi
 
 cd "$DOTFILES_DIR"
-# stow -v --target="$HOME" nvim tmux zsh wezterm bin
-stow -v --target="$HOME" nvim
+# stow -v --target="$HOME" nvim tmux zsh wezterm bin hypr omarchy
+stow -v --target="$HOME" nvim hypr omarchy bin zsh
 echo "Done. Symlinks created."
