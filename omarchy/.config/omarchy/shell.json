@@ -1,15 +1,30 @@
 {
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
   "bar": {
+    "position": "top",
+    "transparent": false,
     "centerAnchor": "omarchy.clock",
     "layout": {
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "omarchy.workspaces"
+        }
+      ],
       "center": [
         {
           "id": "omarchy.indicators"
         },
         {
+          "id": "omarchy.clock",
           "format": "dddd HH:mm",
           "formatAlt": "d MMMM 'W'ww yyyy",
-          "id": "omarchy.clock",
           "verticalFormat": "HH\n—\nmm"
         },
         {
@@ -22,27 +37,12 @@
           "id": "omarchy.system-update"
         }
       ],
-      "left": [
-        {
-          "id": "omarchy.menu"
-        },
-        {
-          "id": "omarchy.workspaces"
-        }
-      ],
       "right": [
         {
           "id": "omarchy.tray"
         },
         {
           "id": "omarchy.agents"
-        },
-        {
-          "exec": "~/.local/bin/omarchy-toggle-espanso status",
-          "id": "espanso",
-          "interval": 3,
-          "tooltip": "Espanso",
-          "type": "command"
         },
         {
           "id": "omarchy.bluetooth"
@@ -60,14 +60,7 @@
           "id": "omarchy.power"
         }
       ]
-    },
-    "position": "top",
-    "transparent": false
+    }
   },
-  "idle": {
-    "lock": 452,
-    "screensaver": 450
-  },
-  "plugins": [],
-  "version": 1
+  "plugins": []
 }
