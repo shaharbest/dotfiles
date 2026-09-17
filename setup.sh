@@ -11,5 +11,5 @@ fi
 
 cd "$DOTFILES_DIR"
 # stow -v --target="$HOME" nvim tmux zsh wezterm bin hypr omarchy
-stow -v --target="$HOME" nvim hypr omarchy bin zsh
+stow -v --target="$HOME" nvim hypr omarchy bin zsh aerc
 echo "Done. Symlinks created."

@@ -12,6 +12,7 @@ My dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | `hypr` | `~/.config/hypr` | Hyprland keybinding overrides |
 | `omarchy` | `~/.config/omarchy` | Omarchy shell config — bar layout, widgets |
 | `bin` | `~/.local/bin` | Personal scripts |
+| `aerc` | `~/.config/aerc` | aerc email client — UI settings (`aerc.conf`) and keybinds (`binds.conf`); account config with real addresses lives in `sensitive-dotfiles` |
 
 ## Setup
 
