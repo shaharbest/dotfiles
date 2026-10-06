@@ -1,6 +1,6 @@
 # Restart espanso after it's upgraded. The running worker keeps the old
 # binary in memory, so expansion still works but launching the search UI
-# (`espanso modulo search`, SUPER+ALT+M) fails with "error occurred during
+# (`espanso modulo search`, SUPER+SHIFT+S) fails with "error occurred during
 # modulo invocation" until espanso is restarted.
 #
 # espanso runs as a systemd *user* service, so restart it in every logged-in

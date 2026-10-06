@@ -45,10 +45,13 @@ o.bind("ALT + XF86AudioLowerVolume", "Volume down precise", "omarchy-volume-boos
 -- ~/.local/bin/omarchy-toggle-espanso, since espanso itself has no query command).
 o.bind_toggle("SUPER + CTRL + M", "Toggle espanso", "espanso")
 
--- Open espanso's match search bar. Replaces espanso's own built-in
--- ALT+SPACE search_shortcut (disabled in espanso's config) so this is the
--- one discoverable, documented way to trigger it (shows up in Super+K).
-o.bind("SUPER + ALT + M", "Espanso: search matches", "espanso cmd search")
+-- Open espanso's match search bar — S for snippets (it replaced the old
+-- snippet-insert picker on this same key; the default here was Google Maps,
+-- now removed). Replaces espanso's own built-in ALT+SPACE search_shortcut
+-- (disabled in espanso's config) so this is the one discoverable, documented
+-- way to trigger it (shows up in Super+K).
+hl.unbind("SUPER + SHIFT + S")
+o.bind("SUPER + SHIFT + S", "Espanso: search snippets", "espanso cmd search")
 
 -- Two WhatsApp accounts, each with its own isolated browser profile so both
 -- stay logged in independently. Replaces the default single WhatsApp bind.
@@ -68,11 +71,13 @@ hl.unbind("SUPER + SHIFT + ALT + E") -- HEY New email
 hl.unbind("SUPER + SHIFT + C")       -- HEY Calendar
 hl.unbind("SUPER + SHIFT + A")       -- ChatGPT
 hl.unbind("SUPER + SHIFT + Y")       -- YouTube
-hl.unbind("SUPER + SHIFT + S")       -- Google Maps
 hl.unbind("SUPER + SHIFT + O")       -- Obsidian
 hl.unbind("SUPER + SHIFT + W")       -- Omawrite
 hl.unbind("SUPER + SHIFT + M")       -- Spotify
 hl.unbind("SUPER + SHIFT + ALT + M") -- Music TUI (cliamp)
+
+-- Work email (Blvd, Microsoft 365). Reuses the old HEY Email slot.
+o.bind("SUPER + SHIFT + E", "Outlook (work)", { webapp = "https://outlook.office.com/mail/", focus = true })
 
 -- Passwords: Omarchy's slot for the password manager (1Password by default,
 -- not installed here) opens a pass(1) picker instead. See ~/.local/bin/pass-menu.
