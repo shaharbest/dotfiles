@@ -1,0 +1,18 @@
+# Restart espanso after it's upgraded. The running worker keeps the old
+# binary in memory, so expansion still works but launching the search UI
+# (`espanso modulo search`, SUPER+ALT+M) fails with "error occurred during
+# modulo invocation" until espanso is restarted.
+#
+# espanso runs as a systemd *user* service, so restart it in every logged-in
+# user's manager where it's active. Always exits 0 so it can't fail a transaction.
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = espanso*
+
+[Action]
+Description = Restarting espanso for logged-in users...
+When = PostTransaction
+Exec = /bin/sh -c 'loginctl list-users --no-legend | while read -r _ u _; do systemctl --user -M $u@ is-active -q espanso.service && systemctl --user -M $u@ restart espanso.service; done; exit 0'
