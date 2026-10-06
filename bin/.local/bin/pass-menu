@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Pick a pass(1) entry from the Omarchy menu and copy its password, like
+# `pass show -c`. Copies with `wl-copy --sensitive` instead of letting pass do
+# it, because pass uses plain wl-copy and Omarchy's clipboard history (saved
+# in ~/.local/state/omarchy/clipboard-history.json) only skips entries hinted
+# as sensitive. Clears the clipboard after PASSWORD_STORE_CLIP_TIME seconds
+# (default 45, same as pass) unless something else was copied meanwhile.
+
+set -euo pipefail
+shopt -s nullglob globstar
+
+store="${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+clip_time="${PASSWORD_STORE_CLIP_TIME:-45}"
+
+entries=("$store"/**/*.gpg)
+entries=("${entries[@]#"$store"/}")
+entries=("${entries[@]%.gpg}")
+
+if (( ${#entries[@]} == 0 )); then
+  omarchy-notification-send -g 󰢁 "Password store is empty" "$store"
+  exit 1
+fi
+
+entry=$(printf '%s\n' "${entries[@]}" | sort | omarchy-menu-select "Pass") || exit 0
+
+if ! secret=$(pass show -- "$entry"); then
+  omarchy-notification-send -g 󰢁 -u normal "Couldn't decrypt $entry"
+  exit 1
+fi
+password=${secret%%$'\n'*}
+unset secret
+
+printf '%s' "$password" | wl-copy --sensitive
+hash=$(printf '%s' "$password" | sha256sum)
+unset password
+
+omarchy-notification-send -g 󰢁 "Copied $entry" "Clears in ${clip_time}s"
+
+# Clear only if the clipboard still holds this password.
+(
+  sleep "$clip_time"
+  if [[ $(wl-paste -n 2>/dev/null | sha256sum) == "$hash" ]]; then
+    wl-copy --clear
+  fi
+) &>/dev/null &
+disown

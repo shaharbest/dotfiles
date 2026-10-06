@@ -73,3 +73,8 @@ hl.unbind("SUPER + SHIFT + O")       -- Obsidian
 hl.unbind("SUPER + SHIFT + W")       -- Omawrite
 hl.unbind("SUPER + SHIFT + M")       -- Spotify
 hl.unbind("SUPER + SHIFT + ALT + M") -- Music TUI (cliamp)
+
+-- Passwords: Omarchy's slot for the password manager (1Password by default,
+-- not installed here) opens a pass(1) picker instead. See ~/.local/bin/pass-menu.
+hl.unbind("SUPER + SHIFT + SLASH")
+o.bind("SUPER + SHIFT + SLASH", "Passwords", "pass-menu")
