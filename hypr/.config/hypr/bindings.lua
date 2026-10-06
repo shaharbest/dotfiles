@@ -56,3 +56,20 @@ hl.unbind("SUPER + SHIFT + ALT + G")
 o.bind("SUPER + SHIFT + ALT + G", "WhatsApp Israeli", { webapp = "https://web.whatsapp.com/", focus = true })
 o.bind("SUPER + SHIFT + ALT + U", "WhatsApp American",
   "omarchy-launch-webapp https://web.whatsapp.com/ --user-data-dir=" .. os.getenv("HOME") .. "/.local/share/webapps/whatsapp-american")
+
+-- Preinstalled apps/web apps that were removed (2026-10-06) because they
+-- were never used — unbind their default keys so the slots are free.
+hl.unbind("SUPER + SHIFT + ALT + A") -- Grok
+hl.unbind("SUPER + SHIFT + X")       -- X
+hl.unbind("SUPER + SHIFT + ALT + X") -- X Post
+hl.unbind("SUPER + SHIFT + P")       -- Google Photos
+hl.unbind("SUPER + SHIFT + E")       -- HEY Email
+hl.unbind("SUPER + SHIFT + ALT + E") -- HEY New email
+hl.unbind("SUPER + SHIFT + C")       -- HEY Calendar
+hl.unbind("SUPER + SHIFT + A")       -- ChatGPT
+hl.unbind("SUPER + SHIFT + Y")       -- YouTube
+hl.unbind("SUPER + SHIFT + S")       -- Google Maps
+hl.unbind("SUPER + SHIFT + O")       -- Obsidian
+hl.unbind("SUPER + SHIFT + W")       -- Omawrite
+hl.unbind("SUPER + SHIFT + M")       -- Spotify
+hl.unbind("SUPER + SHIFT + ALT + M") -- Music TUI (cliamp)
