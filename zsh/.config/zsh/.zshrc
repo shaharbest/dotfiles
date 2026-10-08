@@ -1,6 +1,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Completions linked in by other repos (e.g. ~/Projects/personal/ask). Must be
+# on fpath before zoptions below runs compinit.
+fpath=(~/.local/share/zsh/site-functions $fpath)
+
 # Load zsh options, keybindings, and completion
 [[ -f /usr/share/omarchy-zsh/shell/zoptions ]] && source /usr/share/omarchy-zsh/shell/zoptions
 

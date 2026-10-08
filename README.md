@@ -12,6 +12,7 @@ My dotfiles, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | `hypr` | `~/.config/hypr` | Hyprland keybinding overrides |
 | `omarchy` | `~/.config/omarchy` | Omarchy shell config — bar layout, widgets |
 | `bin` | `~/.local/bin` | Personal scripts |
+| `claude` | `~/.claude` | Claude Code global config: `CLAUDE.md`, rules, hooks, `settings.json`. Stowed with `--no-folding`; see [`claude/README.md`](claude/README.md) |
 | `aerc` | `~/.config/aerc` | aerc email client — UI settings (`aerc.conf`) and keybinds (`binds.conf`); account config with real addresses lives in `sensitive-dotfiles` |
 | `pacman` | `/etc/pacman.d/hooks` | Pacman hooks — `espanso-restart.hook` restarts espanso after upgrades (otherwise its search UI breaks). **Not stowed** — see below |
 

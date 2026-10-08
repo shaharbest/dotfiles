@@ -12,4 +12,6 @@ fi
 cd "$DOTFILES_DIR"
 # stow -v --target="$HOME" nvim tmux zsh wezterm bin hypr omarchy
 stow -v --target="$HOME" nvim hypr omarchy bin zsh aerc
+# claude: per-file links so ~/.claude (Claude Code's runtime dir) never folds into this repo
+stow -v --no-folding --target="$HOME" claude
 echo "Done. Symlinks created."
