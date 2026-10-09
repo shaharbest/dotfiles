@@ -58,12 +58,6 @@ session start.
 These live here, not in a separate file, because stow would link any other
 top-level file in the package into `~`. Only `README*` is skipped.
 
-- **`settings.json` symlink survival is unverified.** Claude Code writes to
-  this file (e.g. `/config`). If it replaces the symlink with a regular file
-  instead of writing through it, changes stop reaching this repo silently.
-  **Check:** after a `/config` change, `ls -l ~/.claude/settings.json` should
-  still show `->`. **Fallback if it breaks:** keep `settings.json` local and
-  copy it from here during setup.
 - **Auto mode's "Teach auto mode about your environment?" wizard** writes a
   description of the *current project* into `settings.json`
   (`autoMode.environment`), and that file is public through this repo. Avoid
