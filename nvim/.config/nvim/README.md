@@ -21,7 +21,6 @@ lua/plugins/              # Plugin specs (one file per plugin/group)
 | **nvim-lspconfig** | LSP configuration |
 | **Telescope** | Fuzzy finder, LSP references/definitions, git |
 | **Oil.nvim** | File browser |
-| **Neo-tree** | Tree file explorer (`<C-n>`) |
 | **Harpoon v2** | Quick file switching |
 | **Treesitter** (`main` branch) | Highlighting, indentation, folding |
 | **gitsigns** | Inline git changes |
@@ -29,8 +28,8 @@ lua/plugins/              # Plugin specs (one file per plugin/group)
 | **LazyGit** | Terminal git UI |
 | **actions-preview** | Code action preview via Telescope |
 | **alpha-nvim** | Dashboard |
-| **peek.nvim** | Markdown preview (requires Deno) |
-| **vim-dadbod** | Database (disabled) |
+| **vivify.vim** | Browser Markdown preview (`<leader>mp`, needs `viv`) |
+| **render-markdown** | In-buffer Markdown rendering (`<leader>mP`) |
 
 ## LSP Servers
 
@@ -51,7 +50,6 @@ Leader: `<Space>`
 | `<leader>b` | Buffers |
 | `<leader>e` | Oil file browser |
 | `<leader>a` | Alternate file |
-| `<C-n>` | Toggle Neo-tree |
 | `<C-f>` | Open current directory |
 
 ### Harpoon
