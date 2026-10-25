@@ -1,6 +1,6 @@
 return {
   "stevearc/oil.nvim",
-  cmd = "Oil",
+  lazy = false, -- load at startup so `nvim <dir>` opens oil (netrw is disabled)
   opts = {
     lsp_file_methods = {
       enabled = true,
