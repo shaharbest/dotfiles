@@ -20,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/theme-css-guard.sh"
+            "command": "f=\"$HOME/Projects/menashe-forge/docs/claude/hooks/theme-css-guard.sh\"; [ -x \"$f\" ] && exec \"$f\"; exit 0"
           }
         ]
       }
